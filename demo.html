@@ -1,16 +1,18 @@
-# rmb
+<!DOCTYPE html>
+<html>
+<head>
 
-伟大的人民币
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no">
 
-* 支持 `value`, `front`, `end`, `decimal`, `del` 五种特性
-* `value` 是金额
-* `front` 和 `end` 分别是前后缀
-* `decimal` 是否显示角和分
-* `del` 是否显示中划线
+<title>Jie RMB</title>
 
-## Example
+<script src="../webcomponentsjs/webcomponents.js"></script>
+<link rel="import" href="jie-rmb.html">
 
-```
+</head>
+<body>
+
 <jie-rmb value="100"></jie-rmb><br>
 <jie-rmb front="￥" value="100"></jie-rmb><br>
 <jie-rmb front="" end="元" value="100"></jie-rmb><br>
@@ -21,4 +23,6 @@
 <jie-rmb decimal="auto" value="100"></jie-rmb><br>
 <jie-rmb decimal="auto" value="100.50"></jie-rmb><br>
 <jie-rmb del value="100"></jie-rmb><br>
-```
+
+</body>
+</html>
