@@ -87,7 +87,7 @@
       addDecimal: function (value) {
         var floatValue = parseFloat(value) || 0;
         floatValue = parseInt(floatValue * 100, 10) / 100 + 0.001;
-        return floatValue.toString().replace(/1$/, '');
+        return floatValue.toString().slice(0, -1);
       },
 
       /**
