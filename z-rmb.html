@@ -1,0 +1,155 @@
+<!--
+
+@element z-rmb
+
+# `<z-rmb>`
+
+A perticular tag name for display CNY price
+
+## Attributes
+
+- `value`
+- `front` & `end`: prefix and suffix of the price
+- `showfraction`: `"true"` | `"false"` | `"auto"`
+- `del`: strike line
+
+## Selectors
+
+- `::shadow .front`
+- `::shadow .integer`
+- `::shadow .dot`
+- `::shadow .fraction`
+- `::shadow .end`
+- `::shadow .strike`
+
+-->
+
+<!--
+
+@example default
+
+<z-rmb value="100"></z-rmb><br>
+<z-rmb front="￥" value="100"></z-rmb><br>
+<z-rmb front="" end="元" value="100"></z-rmb><br>
+<z-rmb showfraction="false" value="100"></z-rmb><br>
+<z-rmb del showfraction="false" value="100.50"></z-rmb><br>
+<z-rmb showfraction="true" value="100"></z-rmb><br>
+<z-rmb showfraction="true" value="100.50"></z-rmb><br>
+<z-rmb showfraction="auto" value="100"></z-rmb><br>
+<z-rmb showfraction="auto" value="100.50"></z-rmb><br>
+<z-rmb del value="100"></z-rmb><br>
+
+-->
+
+<!--
+
+@example Selectors
+
+<style>z-rmb::shadow .integer {font-size: 1.5em;}</style>
+
+<z-rmb value="100"></z-rmb><br>
+<z-rmb front="￥" value="100"></z-rmb><br>
+<z-rmb front="" end="元" value="100"></z-rmb><br>
+<z-rmb showfraction="false" value="100"></z-rmb><br>
+<z-rmb del showfraction="false" value="100.50"></z-rmb><br>
+<z-rmb showfraction="true" value="100"></z-rmb><br>
+<z-rmb showfraction="true" value="100.50"></z-rmb><br>
+<z-rmb showfraction="auto" value="100"></z-rmb><br>
+<z-rmb showfraction="auto" value="100.50"></z-rmb><br>
+<z-rmb del value="100"></z-rmb><br>
+
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+
+<polymer-element name="z-rmb" attributes="value, front, end, showfraction">
+
+  <template
+    ><style>
+      :host {display: inline-block; position: relative;}
+      .strike {display: none;}
+      :host([del]) .strike {display: block; position: absolute; left: 0; right: 0; height: 1px; background-color: red; top: 50%;}
+    </style
+    ><span class="content"
+      ><span class="front">{{front}}</span
+      ><span class="integer">{{integer}}</span
+      ><template if="{{fraction}}"><span class="dot">.</span
+      ><span class="fraction">{{fraction}}</span
+      ></template><span class="end">{{end}}</span
+      ><span class="strike"></span></span
+  ></template>
+
+  <script>
+    Polymer('z-rmb', {
+
+      /**
+       * 金额
+       * @type {Number}
+       */
+      value: 0,
+
+      /**
+       * 前缀
+       * @type {String}
+       */
+      front: '￥',
+
+      /**
+       * 后缀
+       * @type {String}
+       */
+      end: '',
+
+      /**
+       * 是否显示小数
+       * 'auto'|'true'|'false'
+       * @type {String}
+       */
+      showfraction: 'auto',
+
+      /**
+       * 是否显示中划线
+       * @type {Boolean}
+       */
+      del: false,
+
+      /**
+       * 得到整数部分
+       * @return {String}
+       */
+      getInteger: function (value) {
+        return (parseInt(value, 10) || 0).toString();
+      },
+
+      /**
+       * 得到小数部分
+       * @return {String}
+       */
+      getFraction: function (value) {
+        var value;
+        var fraction;
+
+        if (this.showfraction === 'false') {
+          return '';
+        }
+
+        value = parseFloat(value) || 0;
+        fraction = value % 1;
+
+        if (this.showfraction !== 'true' && fraction === 0) {
+          return '';
+        }
+
+        fraction = parseInt(fraction * 100, 10) / 100 + 0.001;
+
+        return fraction.toString().slice(2, -1);
+      },
+
+      computed: {
+        integer: 'getInteger(value)',
+        fraction: 'getFraction(value)'
+      }
+    });
+  </script>
+
+</polymer-element>
