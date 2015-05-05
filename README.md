@@ -1,24 +1,36 @@
-# rmb
+# `<z-rmb>`
 
-伟大的人民币
+A perticular tag name for display CNY price
 
-* 支持 `value`, `front`, `end`, `decimal`, `del` 五种特性
-* `value` 是金额
-* `front` 和 `end` 分别是前后缀
-* `decimal` 是否显示角和分
-* `del` 是否显示中划线
+## Attributes
 
-## Example
+- `value`
+- `front` & `end`: prefix and suffix of the price
+- `showfraction`: `"true"` | `"false"` | `"auto"`
+- `del`: strike line
+
+## Selectors
+
+- `::shadow .front`
+- `::shadow .integer`
+- `::shadow .dot`
+- `::shadow .fraction`
+- `::shadow .end`
+- `::shadow .strike`
+
+## Examples
 
 ```
-<jie-rmb value="100"></jie-rmb><br>
-<jie-rmb front="￥" value="100"></jie-rmb><br>
-<jie-rmb front="" end="元" value="100"></jie-rmb><br>
-<jie-rmb decimal="false" value="100"></jie-rmb><br>
-<jie-rmb del decimal="false" value="100.50"></jie-rmb><br>
-<jie-rmb decimal="true" value="100"></jie-rmb><br>
-<jie-rmb decimal="true" value="100.50"></jie-rmb><br>
-<jie-rmb decimal="auto" value="100"></jie-rmb><br>
-<jie-rmb decimal="auto" value="100.50"></jie-rmb><br>
-<jie-rmb del value="100"></jie-rmb><br>
+<style>z-rmb::shadow .integer {font-size: 1.5em;}</style>
+
+<z-rmb value="100"></z-rmb><br>
+<z-rmb front="￥" value="100"></z-rmb><br>
+<z-rmb front="" end="元" value="100"></z-rmb><br>
+<z-rmb showfraction="false" value="100"></z-rmb><br>
+<z-rmb del showfraction="false" value="100.50"></z-rmb><br>
+<z-rmb showfraction="true" value="100"></z-rmb><br>
+<z-rmb showfraction="true" value="100.50"></z-rmb><br>
+<z-rmb showfraction="auto" value="100"></z-rmb><br>
+<z-rmb showfraction="auto" value="100.50"></z-rmb><br>
+<z-rmb del value="100"></z-rmb><br>
 ```
