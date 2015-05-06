@@ -21,6 +21,21 @@ A perticular tag name for display CNY price
 ## Examples
 
 ```
+<z-rmb value="100"></z-rmb><br>
+<z-rmb front="￥" value="100"></z-rmb><br>
+<z-rmb front="" end="元" value="100"></z-rmb><br>
+<z-rmb showfraction="false" value="100"></z-rmb><br>
+<z-rmb del showfraction="false" value="100.50"></z-rmb><br>
+<z-rmb showfraction="true" value="100"></z-rmb><br>
+<z-rmb showfraction="true" value="100.50"></z-rmb><br>
+<z-rmb showfraction="auto" value="100"></z-rmb><br>
+<z-rmb showfraction="auto" value="100.50"></z-rmb><br>
+<z-rmb del value="100"></z-rmb><br>
+```
+
+### Selectors
+
+```
 <style>z-rmb::shadow .integer {font-size: 1.5em;}</style>
 
 <z-rmb value="100"></z-rmb><br>
