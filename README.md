@@ -2,6 +2,12 @@
 
 A perticular tag name for display CNY price
 
+## Import
+
+```
+<link rel="import" href="z-rmb/z-rmb.html">
+```
+
 ## Attributes
 
 - `value`
